@@ -23,6 +23,7 @@ import misc_functions as mf
 #   load data that we will analyze
 dat = pd.read_csv(os.path.join(project_path, "events_1_1.csv"),
                   parse_dates=['ts', 'date_from', 'date_to'])
+dat['obs_id'] = dat.index #add index (unique value) for each observation - this is important for merging below
 
 
 #   compute a few features hypothesized to be relevant
@@ -35,11 +36,11 @@ dat['ts_hour'] = dat['ts'].dt.hour
 
 #previous number of searches and bookings for this user - vectorized for speed (apply function was too slow)
 #if we had a longer timespan of data we could look at searches/bookings for similar trips (e.g., similar origin and/or destination, or other characteristics of trip)
-dat_user_merge = dat[['user_id', 'ts']].merge(dat[['user_id', 'ts', 'event_type']], how = 'inner', on = 'user_id')
+dat_user_merge = dat[['user_id', 'ts', 'obs_id']].merge(dat[['user_id', 'ts', 'event_type']], how = 'inner', on = 'user_id')
 dat_user_merge['prev_search'] = ((dat_user_merge['ts_x'] > dat_user_merge['ts_y']) & (dat_user_merge['event_type'] == 'search')) * 1
 dat_user_merge['prev_book'] = ((dat_user_merge['ts_x'] > dat_user_merge['ts_y']) & (dat_user_merge['event_type'] == 'book')) * 1
-previous_vars = dat_user_merge.groupby(['user_id', 'ts_x']).sum()
-dat = dat.merge(previous_vars, how = 'left', left_on = ['user_id', 'ts'], right_on = ['user_id', 'ts_x'])
+previous_vars = dat_user_merge.groupby('obs_id').sum() #group by each observation's unique ID
+dat = dat.merge(previous_vars, how = 'left', on = 'obs_id')
 
 
 #   trip distance in km
@@ -51,7 +52,7 @@ dat['book'] = dat['event_type'].map({'book' : True, 'search' : False})
 
 
 #   convert raw data (quality control)
-dat.drop_duplicates(inplace=True) #for now let's just get rid of duplicate rows
+dat.drop_duplicates(subset=dat.columns.difference(['obs_id']), inplace=True) #for now let's just get rid of duplicate rows
 dat.dropna(inplace=True) #in the future we should impute missing values in some way rather than throw these out (particularly because we want to be able to make predictions for cases with missing values).
 
 
