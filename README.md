@@ -48,7 +48,7 @@ You may want to change the `model_name` in order to run this several times and k
 
 - Stdout and stderr output should ideally have been redirected using `sys.stdout` and `sys.stderr`, for example:
 ```python 
-   import sys
+import sys
 prev_out = sys.stdout
 std_log = open('out.log', 'w')
 error_log = open('err.log', 'w')
