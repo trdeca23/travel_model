@@ -1,0 +1,65 @@
+
+
+
+
+DESCRIPTIVE STATS
+
+X:
+          num_adults  num_children  duration_trip  time_to_trip      ts_month  ts_dayofmonth ts_weekday       ts_hour   prev_search     prev_book   distance_km
+count   45876.000000  45876.000000   45876.000000  45876.000000  45876.000000   45876.000000      45876  45876.000000  45876.000000  45876.000000  45876.000000
+unique           NaN           NaN            NaN           NaN           NaN            NaN          7           NaN           NaN           NaN           NaN
+top              NaN           NaN            NaN           NaN           NaN            NaN          5           NaN           NaN           NaN           NaN
+freq             NaN           NaN            NaN           NaN           NaN            NaN       9263           NaN           NaN           NaN           NaN
+mean        1.675931      0.146133       9.307546     76.628782      4.096303      23.962181        NaN     13.922639      0.713380      0.015694   3236.538301
+std         0.987431      0.477010      15.094192     74.862894      0.295010       7.926132        NaN      7.417811      1.558846      0.137609   3551.353392
+min         1.000000      0.000000       0.000000     -2.000000      4.000000       1.000000        NaN      0.000000      0.000000      0.000000      9.254459
+25%         1.000000      0.000000       2.000000     17.000000      4.000000      23.000000        NaN     11.000000      0.000000      0.000000    839.787808
+50%         1.000000      0.000000       5.000000     51.000000      4.000000      27.000000        NaN     16.000000      0.000000      0.000000   1574.913946
+75%         2.000000      0.000000      12.000000    125.000000      4.000000      29.000000        NaN     20.000000      1.000000      0.000000   5249.665515
+max         9.000000      5.000000     331.000000    362.000000      5.000000      30.000000        NaN     23.000000     36.000000      4.000000  19433.125933
+
+num_adults         int64
+num_children       int64
+duration_trip    float64
+time_to_trip     float64
+ts_month           int64
+ts_dayofmonth      int64
+ts_weekday        object
+ts_hour            int64
+prev_search        int64
+prev_book          int64
+distance_km      float64
+dtype: object
+
+y:
+count     45876
+unique        2
+top       False
+freq      44069
+Name: book, dtype: object
+
+bool
+
+
+
+
+
+MODEL PERFORMANCE
+
+ROC AUC: 0.9369949825658486 
+
+True positives #:522.0
+False positives #:2018.0
+True negatives #:11190.0
+False negatives #:33.0
+
+True positive rate: 0.9405405405405406
+True negative rate: 0.847213809812235
+Positive predictive value: 0.20551181102362204
+Negative predictive value: 0.9970596097300187
+False positive rate: 0.152786190187765
+False negative rate: 0.05945945945945946
+False discovery rate: 0.794488188976378
+Accuracy: 0.850977257865291
+
+End of output.
