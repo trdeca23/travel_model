@@ -1,4 +1,4 @@
-#INSTRUCTIONS:
+# INSTRUCTIONS:
 
 1. Install required libraries to your environment. Required libraries are:
   * os
@@ -45,7 +45,17 @@ You may want to change the `model_name` in order to run this several times and k
 
 - I wasn't particularly careful with handling datatypes. For example, the training and test data are created as Pandas objects. It may have been better to create these as numpy arrays.
 
-- Stdout and stderr output should ideally have been redirected using sys.stdout and sys.stderr: import sys; prev_out = sys.stdout; std_log = open('out.log', 'w'); error_log = open('err.log', 'w'); sys.stdout = std_log; print('This message will be logged'); raise Exception('This error will be logged'); sys.stdout = prev_out; std_log.close()
+- Stdout and stderr output should ideally have been redirected using `sys.stdout` and `sys.stderr`, for example:
+```python 
+import sys
+prev_out = sys.stdout
+std_log = open('out.log', 'w')
+error_log = open('err.log', 'w')
+sys.stdout = std_log
+print('This message will be logged')
+raise Exception('This error will be logged')
+sys.stdout = prev_out; std_log.close()
+```
 
 
 
