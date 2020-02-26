@@ -3,3 +3,4 @@
 *.gz
 *.png
 *.sav
+__pycache__/
